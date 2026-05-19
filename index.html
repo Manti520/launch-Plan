@@ -56,9 +56,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);fon
 .cr td{padding:9px 18px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;border:none;background:var(--bg)}
 .gt tr.dr:hover{background:#F8F9F9}
 .gt td{border-bottom:1px solid var(--border);vertical-align:middle}
-.gt td.ltd{padding:6px 8px 6px 18px;font-size:12px;min-width:200px;cursor:pointer}
+.gt td.ltd{padding:6px 8px 6px 6px;font-size:12px;min-width:200px;cursor:pointer}
 .gt td.ltd:hover .eh{opacity:1}
 .eh{opacity:0;font-size:10px;color:var(--text3);margin-left:5px;transition:opacity .15s}
+.dh{display:inline-flex;align-items:center;justify-content:center;width:18px;cursor:grab;color:var(--text3);font-size:13px;flex-shrink:0;margin-right:2px;user-select:none;vertical-align:middle}
+.dh:active{cursor:grabbing}
+.gt tr.dr.dragging{opacity:.35;background:#EBF5FB}
+.gt tr.dr.drag-over{outline:2px solid #5DADE2;outline-offset:-1px;background:#EBF5FB}
 .gt td.otd{padding:3px 6px;min-width:100px}
 .oi{width:100%;border:1px solid transparent;border-radius:var(--r);padding:3px 6px;font-size:11px;font-family:inherit;background:transparent;color:var(--text2);transition:border .15s,background .15s}
 .oi:hover{border-color:var(--border2);background:var(--bg)}.oi:focus{border-color:#5DADE2;background:#fff;outline:none}
@@ -191,7 +195,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);fon
       <div class="li"><span class="lsq" style="background:var(--wb)"></span>Webinar</div>
       <div class="li"><span class="lsq" style="background:var(--automate-light);border:1px solid var(--automate)"></span>Automate week</div>
       <div class="li"><span class="lsq" style="background:var(--now-light);border:1px solid var(--now)"></span>This week</div>
-      <span style="margin-left:auto;font-size:11px;color:var(--text3)">Click activity or bar to edit · Click empty cell to place</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text3)">⠿ Drag to reorder · Click activity to edit · Click empty cell to place</span>
     </div>
     <div class="gwrap"><table class="gt" id="GT"></table></div>
   </div>
@@ -287,15 +291,15 @@ const DS=[
     {id:22,name:'Demo video shoot',                   type:'mkt', start:0,dur:2,owner:'Mktg Lead',status:'not',notes:'90-sec demo. Operator (not engineer) runs 60-sec setup. Segmentation as hero scenario.'},
     {id:23,name:'Landing page live',                  type:'mkt', start:1,dur:2,owner:'Mktg Lead',status:'not',notes:'Must be live by May 23. Demo video, waitlist CTA, no price-first messaging.'},
     {id:24,name:'One-pager & competitive tearsheet',  type:'mkt', start:1,dur:2,owner:'Mktg Lead',status:'not',notes:'GAP ADDED: Include Cognex Insight series in tearsheet alongside IV4, VS, OV80i — was missing from original plan.'},
-    {id:25,name:'3D model rendering',                 type:'mkt', start:1,dur:2,owner:'Mktg Lead',status:'not',notes:'Product renders for landing page, one-pager, and sales deck. Needed before any major assets go live — start immediately alongside landing page brief.'},
-    {id:26,name:'Sales deck',                         type:'mkt', start:1,dur:2,owner:'Mktg Lead',status:'not',notes:'Full sales presentation for SI partners and direct prospects. Lead with ease-of-deployment story. Include competitive comparison vs IV4, VS, OV80i, Cognex. Align with SI channel enablement package.'},
-    {id:27,name:'Product teaser video publish',       type:'mkt', start:2,dur:2,owner:'Mktg Lead',status:'not',notes:'60–90 sec teaser cut for social and landing page. Distinct from the full demo video — this is the awareness hook. Publish by June 6 to build pre-show buzz. Push to LinkedIn and YouTube.'},
-    {id:28,name:'Pre-show email campaign',            type:'mkt', start:2,dur:3,owner:'Mktg Lead',status:'not',notes:'3-email nurture sequence to landing page waitlist and existing contacts. Email 1 (May 23): product announcement teaser. Email 2 (Jun 6): segmentation capability reveal. Email 3 (Jun 16): "See us at Automate" booth invite with meeting booking link.'},
-    {id:29,name:'Demo video published',               type:'mkt', start:3,dur:2,owner:'Mktg Lead',status:'not',notes:'Full 90-sec demo video on LinkedIn + YouTube. At least 2 weeks before show opens. Operator (not engineer) runs the 60-sec setup.'},
+    {id:25,name:'3D model rendering',                 type:'mkt', start:1,dur:2,owner:'Mktg Lead',status:'not',notes:'Foundation asset needed before landing page, deck, and one-pager can be finalised. Start immediately alongside landing page brief.'},
+    {id:26,name:'Sales deck',                         type:'mkt', start:1,dur:2,owner:'Mktg Lead',status:'not',notes:'Full sales presentation for SI partners and direct prospects. Lead with ease-of-deployment. Include competitive comparison vs IV4, VS, OV80i, Cognex. Align with SI channel enablement package.'},
+    {id:27,name:'Product teaser video publish',       type:'mkt', start:2,dur:2,owner:'Mktg Lead',status:'not',notes:'60–90 sec teaser cut for social and landing page — distinct from the full demo video, this is the awareness hook. Publish by Jun 6 to build pre-show buzz. Push to LinkedIn and YouTube.'},
+    {id:28,name:'Pre-show email campaign',            type:'mkt', start:2,dur:3,owner:'Mktg Lead',status:'not',notes:'3-email nurture sequence. Email 1 (May 23): product announcement teaser. Email 2 (Jun 6): segmentation capability reveal. Email 3 (Jun 16): "See us at Automate" booth invite with meeting booking link.'},
+    {id:29,name:'Demo video published',               type:'mkt', start:3,dur:2,owner:'Mktg Lead',status:'not',notes:'Full 90-sec demo on LinkedIn + YouTube. At least 2 weeks before show opens. Operator (not engineer) runs the 60-sec setup.'},
     {id:50,name:'User manual',                        type:'mkt', start:3,dur:3,owner:'Mktg Lead',status:'not',notes:'Complete user-facing documentation. Must be ready for Automate booth — SIs and prospects will ask for it. Cover: setup, tool configuration, PLC integration, troubleshooting.'},
-    {id:51,name:'Tutorial video',                     type:'mkt', start:4,dur:2,owner:'Mktg Lead',status:'not',notes:'Step-by-step setup and tool configuration video. Reinforces the "your team can deploy it" brand promise. Publish before Automate. Can double as webinar pre-read content.'},
+    {id:51,name:'Tutorial video',                     type:'mkt', start:4,dur:2,owner:'Mktg Lead',status:'not',notes:'Step-by-step setup and configuration video. Reinforces the "your team can deploy it" brand promise. Publish before Automate. Can double as webinar pre-read.'},
     {id:30,name:'Demo dry-run',                       type:'mkt', start:5,dur:1,owner:'Mktg Lead',status:'not',notes:'Week of June 16. Non-expert operator runs full setup end to end without coaching. Source the "clip not fully seated" fixture for segmentation demo.'},
-    {id:52,name:'Case studies',                       type:'mkt', start:7,dur:3,owner:'Mktg Lead',status:'not',notes:'First case study from Automate pilot partner — center on time-to-deploy story, not features. Target publish by mid-July to support post-show lead nurture and webinar credibility.'},
+    {id:52,name:'Case studies',                       type:'mkt', start:7,dur:3,owner:'Mktg Lead',status:'not',notes:'First case study from Automate pilot partner — center on time-to-deploy story. Target publish mid-July to support post-show lead nurture and webinar credibility.'},
     {id:31,name:'Live booth demo (hourly)',            type:'ms',  start:6,dur:1,owner:'Mktg Lead',status:'not',notes:'Operator every hour. "Clip not fully seated" segmentation scenario needs physical part fixture on booth.',fixed:true},
     {id:32,name:'Webinar invite email',               type:'wb',  start:7,dur:2,owner:'Mktg Lead',status:'not',notes:'Send by June 30. All Automate leads + landing page waitlist.'},
     {id:33,name:'Webinar: AI Vision Your Team Can Deploy',type:'wb',start:8,dur:2,owner:'Mktg Lead',status:'not',notes:'Target Tue–Wed Jul 8–17. 11AM or 2PM ET. 60 min. Record + gate behind form.'},
@@ -366,7 +370,7 @@ function renderGantt(){
     h+=`<tr class="cr"><td colspan="${WKS.length+3}" style="color:${cc}">${sec.cat}</td></tr>`;
     sec.rows.forEach(r=>{
       const sc={not:'sn',prog:'sp',done:'sd',block:'sb'}[r.status||'not'];
-      h+=`<tr class="dr" id="R${r.id}"><td class="ltd" onclick="openModal(${r.id})">${r.name}<span class="eh">✎</span></td>`;
+      h+=`<tr class="dr" id="R${r.id}" draggable="true" data-id="${r.id}" data-sec="${sec.id}" ondragstart="dragStart(event,${r.id},'${sec.id}')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,${r.id},'${sec.id}')" ondragend="dragEnd(event)"><td class="ltd" onclick="openModal(${r.id})"><span class="dh" ondragstart="event.stopPropagation()" onclick="event.stopPropagation()" draggable="false" title="Drag to reorder">⠿</span>${r.name}<span class="eh">✎</span></td>`;
       h+=`<td class="otd"><input class="oi" value="${(r.owner||'').replace(/"/g,'&quot;')}" onchange="setOwner(${r.id},this.value)" placeholder="Assign..."></td>`;
       h+=`<td style="padding:2px 6px"><select class="ssel ${sc}" onchange="setStatus(${r.id},this.value)"><option value="not" ${r.status==='not'?'selected':''}>Not started</option><option value="prog" ${r.status==='prog'?'selected':''}>In progress</option><option value="done" ${r.status==='done'?'selected':''}>Done</option><option value="block" ${r.status==='block'?'selected':''}>Blocked</option></select></td>`;
       h+=`<td style="padding:2px 4px;text-align:center">${r.fixed?'':'<button onclick="delRowInline('+r.id+')" title="Delete row" style="background:none;border:none;cursor:pointer;color:var(--text3);font-size:15px;line-height:1;padding:2px 4px;border-radius:3px;transition:color .12s" onmouseenter="this.style.color=\'var(--pr)\'" onmouseleave="this.style.color=\'var(--text3)\'">×</button>'}</td>`;
@@ -426,6 +430,42 @@ function saveModal(){
 }
 function delRow(){if(!editId)return;secs.forEach(s=>{s.rows=s.rows.filter(r=>r.id!==editId)});closeModal();renderGantt();saveData()}
 function delRowInline(id){const r=findRow(id);if(!r||r.fixed)return;if(!confirm(`Delete "${r.name}"?`))return;secs.forEach(s=>{s.rows=s.rows.filter(x=>x.id!==id)});renderGantt();saveData();toast('Row deleted')}
+
+// ── DRAG TO REORDER ───────────────────────────────────────────────────────────
+let dragId=null,dragSecId=null;
+function dragStart(e,id,secId){
+  dragId=id; dragSecId=secId;
+  e.dataTransfer.effectAllowed='move';
+  setTimeout(()=>document.getElementById('R'+id)?.classList.add('dragging'),0);
+}
+function dragOver(e){
+  e.preventDefault(); e.dataTransfer.dropEffect='move';
+  const tr=e.currentTarget;
+  if(tr.dataset.id!=dragId) tr.classList.add('drag-over');
+}
+function dragLeave(e){e.currentTarget.classList.remove('drag-over')}
+function dragEnd(e){
+  document.querySelectorAll('.dr').forEach(r=>r.classList.remove('dragging','drag-over'));
+  dragId=null; dragSecId=null;
+}
+function dragDrop(e,targetId,targetSecId){
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  if(dragId===targetId)return;
+  // find source
+  let srcSec=secs.find(s=>s.id===dragSecId);
+  let tgtSec=secs.find(s=>s.id===targetSecId);
+  if(!srcSec||!tgtSec)return;
+  const srcIdx=srcSec.rows.findIndex(r=>r.id===dragId);
+  if(srcIdx===-1)return;
+  const [row]=srcSec.rows.splice(srcIdx,1);
+  // insert before target in target section
+  const tgtIdx=tgtSec.rows.findIndex(r=>r.id===targetId);
+  if(tgtIdx===-1){tgtSec.rows.push(row)}else{tgtSec.rows.splice(tgtIdx,0,row)}
+  // update row type to match new section if moved cross-section
+  if(dragSecId!==targetSecId&&row.type!=='ms'&&row.type!=='wb'){row.type=targetSecId}
+  renderGantt(); saveData(); toast('Row moved');
+}
 function qplace(id,week){const r=findRow(id);if(!r)return;r.start=week;r.dur=1;renderGantt();saveData();openModal(id)}
 function setOwner(id,v){const r=findRow(id);if(r){r.owner=v;saveData()}}
 function setStatus(id,v){const r=findRow(id);if(r){r.status=v;saveData();renderGantt()}}
