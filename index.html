@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UnitX Smart Camera — Launch Plan 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+:root{
+  --pr:#C0392B;--pr-light:#FADBD8;--pr-dark:#922B21;
+  --mkt:#1A5276;--mkt-light:#D6EAF8;--mkt-dark:#154360;
+  --sales:#1E8449;--sales-light:#D5F5E3;--sales-dark:#196F3D;
+  --ms:#117A65;--ms-light:#A2D9CE;
+  --wb:#7D3C98;--wb-light:#E8DAEF;
+  --automate:#0B5345;--automate-light:#A9DFBF;
+  --bg:#F4F6F7;--card:#FFFFFF;
+  --text:#1C2833;--text2:#566573;--text3:#AAB7B8;
+  --border:#E5E8E8;--border2:#CDD3D3;
+  --now:#F39C12;--now-light:#FEF9E7;
+  --r:6px;--rl:10px;
+  --sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.05);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:13px;line-height:1.5;min-height:100vh}
+.topbar{background:#0E1A24;color:#fff;padding:0 24px;height:52px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,.08)}
+.tbl{font-size:15px;font-weight:600;letter-spacing:-.3px}.tbl span{color:#5DADE2}
+.tsep{width:1px;height:20px;background:rgba(255,255,255,.15)}
+.ttl{font-size:12px;color:rgba(255,255,255,.5)}
+.tnav{display:flex;gap:2px}
+.tbtn{background:transparent;border:none;color:rgba(255,255,255,.5);padding:6px 14px;border-radius:var(--r);cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s}
+.tbtn:hover{color:#fff;background:rgba(255,255,255,.08)}.tbtn.active{color:#fff;background:rgba(255,255,255,.14)}
+.tright{margin-left:auto;display:flex;align-items:center;gap:10px}
+.uchip{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 12px 4px 6px;cursor:pointer;font-size:12px;color:#fff;transition:background .15s}
+.uchip:hover{background:rgba(255,255,255,.14)}
+.uav{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#fff}
+.wrap{max-width:1200px;margin:0 auto;padding:20px 24px 60px}
+.tc{display:none}.tc.active{display:block}
+.banner{background:#0E1A24;border-radius:var(--rl);padding:18px 24px;margin-bottom:16px;display:flex;align-items:center;gap:20px;color:#fff}
+.banner h1{font-size:17px;font-weight:600;margin-bottom:2px}.banner p{font-size:12px;color:rgba(255,255,255,.5)}
+.bchips{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:4px 11px;border-radius:20px;font-size:11px;font-weight:500;border:1px solid;white-space:nowrap}
+.pstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.pc{background:#fff;border-radius:var(--rl);border:1px solid var(--border);padding:11px 14px}
+.pclb{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text3);margin-bottom:2px}
+.pct{font-size:13px;font-weight:600}.pcs{font-size:11px;color:var(--text2)}
+.card{background:#fff;border-radius:var(--rl);border:1px solid var(--border);box-shadow:var(--sh);margin-bottom:14px;overflow:hidden}
+.leg{display:flex;gap:14px;flex-wrap:wrap;padding:10px 18px;border-bottom:1px solid var(--border);background:#FAFBFB;align-items:center}
+.li{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2)}
+.lsq{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.gwrap{overflow-x:auto}
+.gt{width:100%;border-collapse:collapse}
+.gt th{font-size:10px;font-weight:600;color:var(--text2);text-align:center;padding:7px 4px;border-bottom:2px solid var(--border);white-space:nowrap;background:#FAFBFB;position:sticky;top:52px;z-index:10}
+.gt th.lth{text-align:left;min-width:200px;padding-left:18px}
+.gt th.oth{min-width:100px}.gt th.wth{width:68px}
+.gt th.ath{background:var(--automate-light);color:var(--automate)}
+.cr td{padding:9px 18px 3px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;border:none;background:var(--bg)}
+.gt tr.dr:hover{background:#F8F9F9}
+.gt td{border-bottom:1px solid var(--border);vertical-align:middle}
+.gt td.ltd{padding:6px 8px 6px 18px;font-size:12px;min-width:200px;cursor:pointer}
+.gt td.ltd:hover .eh{opacity:1}
+.eh{opacity:0;font-size:10px;color:var(--text3);margin-left:5px;transition:opacity .15s}
+.gt td.otd{padding:3px 6px;min-width:100px}
+.oi{width:100%;border:1px solid transparent;border-radius:var(--r);padding:3px 6px;font-size:11px;font-family:inherit;background:transparent;color:var(--text2);transition:border .15s,background .15s}
+.oi:hover{border-color:var(--border2);background:var(--bg)}.oi:focus{border-color:#5DADE2;background:#fff;outline:none}
+.gt td.ctd{padding:2px 2px;width:68px}
+.bw{height:22px;position:relative}
+.bar{height:22px;border-radius:3px;width:100%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:opacity .15s,transform .1s}
+.bar:hover{opacity:.78;transform:scaleY(.9)}
+.bar.pr{background:var(--pr)}.bar.mkt{background:var(--mkt)}.bar.sales{background:var(--sales)}.bar.ms{background:var(--ms)}.bar.wb{background:var(--wb)}
+.bar.empty{background:transparent;cursor:crosshair;border:1px dashed transparent;transition:border .12s}
+.bar.empty:hover{border-color:var(--border2)}
+.msd{font-size:13px;color:#fff}
+.ctd.ac{background:rgba(161,217,190,.18)}.ctd.nc{background:rgba(243,156,18,.06)}
+.ssel{border:none;background:transparent;font-size:10px;font-family:inherit;cursor:pointer;padding:2px 4px;border-radius:3px;font-weight:500}
+.sn{color:var(--text3)}.sp{color:var(--mkt);background:var(--mkt-light)}.sd{color:var(--sales-dark);background:var(--sales-light)}.sb{color:var(--pr-dark);background:var(--pr-light)}
+.addp{background:#fff;border:1px solid var(--border);border-radius:var(--rl);padding:14px 18px;margin-bottom:14px}
+.addp h3{font-size:12px;font-weight:600;margin-bottom:11px}
+.ag{display:grid;grid-template-columns:1fr 130px 130px 80px 110px auto;gap:8px;align-items:end}
+.ag label{font-size:11px;color:var(--text2);display:block;margin-bottom:3px}
+.ag input,.ag select{width:100%;padding:7px 9px;border:1px solid var(--border2);border-radius:var(--r);font-size:12px;font-family:inherit;color:var(--text)}
+.ag input:focus,.ag select:focus{outline:none;border-color:#5DADE2}
+.mbg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;align-items:center;justify-content:center}
+.mbg.open{display:flex}
+.modal{background:#fff;border-radius:var(--rl);padding:24px;width:440px;max-width:95vw;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal h3{font-size:14px;font-weight:600;margin-bottom:16px}
+.fr{margin-bottom:12px}
+.fr label{display:block;font-size:11px;color:var(--text2);margin-bottom:4px;font-weight:500}
+.fr input,.fr select,.fr textarea{width:100%;padding:8px 10px;border:1px solid var(--border2);border-radius:var(--r);font-size:13px;font-family:inherit;color:var(--text);transition:border .15s}
+.fr input:focus,.fr select:focus,.fr textarea:focus{outline:none;border-color:#5DADE2}
+.fr textarea{resize:vertical;min-height:60px}
+.ft{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mbtns{display:flex;gap:8px;margin-top:18px;align-items:center}
+.btn{padding:7px 15px;border-radius:var(--r);border:none;font-size:12px;font-family:inherit;font-weight:500;cursor:pointer;transition:all .15s}
+.bpri{background:#0E1A24;color:#fff}.bpri:hover{background:#1A2F3F}
+.bsec{background:var(--bg);color:var(--text);border:1px solid var(--border2)}.bsec:hover{background:var(--border)}
+.bdng{background:var(--pr-light);color:var(--pr-dark);margin-left:auto}.bdng:hover{background:var(--pr);color:#fff}
+.up{display:none;position:fixed;top:52px;right:0;background:#fff;border:1px solid var(--border);border-radius:0 0 var(--rl) var(--rl);box-shadow:var(--sh);padding:14px;width:240px;z-index:150}
+.up.open{display:block}
+.up h4{font-size:11px;font-weight:600;color:var(--text2);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em}
+.ul{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.urow{display:flex;align-items:center;gap:8px;cursor:pointer;padding:5px 8px;border-radius:var(--r);transition:background .1s}
+.urow:hover{background:var(--bg)}.urow.active{background:var(--mkt-light)}
+.un{font-size:12px;font-weight:500}.urole{font-size:10px;color:var(--text2)}
+/* messaging */
+.ms-sec{margin-bottom:22px}
+.ms-sec h3{font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:4px}
+.mc{background:#fff;border:1px solid var(--border);border-radius:var(--rl);padding:13px 15px}
+.mclb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:5px}
+.mc textarea{width:100%;border:none;outline:none;resize:none;font-size:13px;font-family:inherit;color:var(--text);line-height:1.6;background:transparent;min-height:58px}
+.mc textarea:focus{background:#FAFBFB;border-radius:3px}
+.lgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.lgrid h4{font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px}
+.ll{display:flex;flex-direction:column;gap:4px}
+.lit{display:flex;align-items:center;gap:6px;padding:3px 0}
+.lit input{flex:1;border:none;border-bottom:1px dashed transparent;outline:none;font-size:12px;font-family:inherit;color:var(--text);background:transparent;padding:2px 4px;transition:border .12s}
+.lit input:hover{border-bottom-color:var(--border2)}.lit input:focus{border-bottom-color:#5DADE2;background:#FAFBFB;border-radius:3px 3px 0 0}
+.dlt{opacity:0;background:none;border:none;cursor:pointer;color:var(--text3);font-size:15px;transition:opacity .12s;padding:0 2px;line-height:1}
+.lit:hover .dlt{opacity:1}
+.albtn{background:none;border:1px dashed var(--border2);border-radius:var(--r);padding:5px 12px;font-size:11px;color:var(--text2);cursor:pointer;width:100%;margin-top:6px;transition:all .15s;font-family:inherit}
+.albtn:hover{border-color:var(--text2);color:var(--text)}
+.tbar{display:flex;gap:8px;margin-bottom:12px;align-items:center;flex-wrap:wrap}
+.toast{position:fixed;bottom:20px;right:20px;background:#0E1A24;color:#fff;padding:10px 16px;border-radius:var(--rl);font-size:12px;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:300}
+.toast.show{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tbl">Unit<span>X</span></div>
+  <div class="tsep"></div>
+  <div class="ttl">Smart Camera V1 — Launch Plan 2026</div>
+  <div class="tnav">
+    <button class="tbtn active" onclick="showTab('gantt')">Add a Timeline</button>
+    <button class="tbtn" onclick="showTab('msg')">Messaging</button>
+  </div>
+  <div class="tright">
+    <div class="uchip" onclick="toggleUP()">
+      <div class="uav" id="av" style="background:#2471A3">?</div>
+      <span id="uname">Select user</span>
+    </div>
+  </div>
+</div>
+
+<div class="up" id="UP">
+  <h4>Who are you?</h4>
+  <div class="ul" id="UL"></div>
+  <input type="text" id="nUN" placeholder="Name..." style="width:100%;padding:6px 8px;border:1px solid var(--border2);border-radius:var(--r);font-size:12px;font-family:inherit;margin-bottom:5px">
+  <input type="text" id="nUR" placeholder="Role..." style="width:100%;padding:6px 8px;border:1px solid var(--border2);border-radius:var(--r);font-size:12px;font-family:inherit;margin-bottom:8px">
+  <button class="btn bpri" style="width:100%;font-size:11px;padding:6px" onclick="addUser()">Add member</button>
+</div>
+
+<div class="wrap">
+
+<!-- TIMELINE -->
+<div class="tc active" id="tab-gantt">
+  <div class="banner">
+    <div><h1>Launch &amp; PR Timeline</h1><p>Automate 2026 · June 22–25 · McCormick Place, Chicago</p></div>
+    <div class="bchips">
+      <div class="chip" style="border-color:#C0392B;color:#C0392B;background:#FADBD8">PR starts May 16</div>
+      <div class="chip" style="border-color:#1A5276;color:#1A5276;background:#D6EAF8">Marketing from May 9</div>
+      <div class="chip" style="border-color:#1E8449;color:#1E8449;background:#D5F5E3">Sales from May 9</div>
+      <div class="chip" style="border-color:#7D3C98;color:#7D3C98;background:#E8DAEF">Webinar Jul 8–17</div>
+    </div>
+  </div>
+  <div class="pstrip">
+    <div class="pc"><div class="pclb">Phase 1</div><div class="pct">May 9–16</div><div class="pcs">Media foundation</div></div>
+    <div class="pc"><div class="pclb">Phase 2</div><div class="pct">May 17–30</div><div class="pcs">Assets &amp; articles</div></div>
+    <div class="pc"><div class="pclb">Phase 3</div><div class="pct">May 31–Jun 20</div><div class="pcs">Amplification &amp; booth</div></div>
+    <div class="pc"><div class="pclb">Phase 4</div><div class="pct">Jun 26–Jul 17</div><div class="pcs">Momentum &amp; webinar</div></div>
+  </div>
+
+  <div class="addp">
+    <h3>Add new activity</h3>
+    <div class="ag">
+      <div><label>Activity name</label><input type="text" id="ar-name" placeholder="e.g. Podcast outreach"></div>
+      <div><label>Section</label><select id="ar-sec"><option value="pr">PR &amp; Media</option><option value="mkt">Marketing</option><option value="sales">Sales</option></select></div>
+      <div><label>Start week</label><select id="ar-start"></select></div>
+      <div><label>Duration (wks)</label><input type="number" id="ar-dur" min="1" max="10" value="1" step="1"></div>
+      <div><label>Owner</label><input type="text" id="ar-owner" placeholder="Name..."></div>
+      <div style="padding-bottom:1px"><button class="btn bpri" onclick="addRowPanel()">Add</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="leg">
+      <div class="li"><span class="lsq" style="background:var(--pr)"></span>PR &amp; media</div>
+      <div class="li"><span class="lsq" style="background:var(--mkt)"></span>Marketing</div>
+      <div class="li"><span class="lsq" style="background:var(--sales)"></span>Sales</div>
+      <div class="li"><span class="lsq" style="background:var(--ms)"></span>Milestone</div>
+      <div class="li"><span class="lsq" style="background:var(--wb)"></span>Webinar</div>
+      <div class="li"><span class="lsq" style="background:var(--automate-light);border:1px solid var(--automate)"></span>Automate week</div>
+      <div class="li"><span class="lsq" style="background:var(--now-light);border:1px solid var(--now)"></span>This week</div>
+      <span style="margin-left:auto;font-size:11px;color:var(--text3)">Click activity or bar to edit · Click empty cell to place</span>
+    </div>
+    <div class="gwrap"><table class="gt" id="GT"></table></div>
+  </div>
+
+  <div class="tbar">
+    <button class="btn bpri" onclick="saveData()">Save changes</button>
+    <button class="btn bsec" onclick="exportCSV()">Export CSV</button>
+    <button class="btn bsec" onclick="resetData()" style="margin-left:auto;color:var(--text3)">Reset to defaults</button>
+  </div>
+</div>
+
+<!-- MESSAGING -->
+<div class="tc" id="tab-msg">
+  <div class="banner">
+    <div><h1>Messaging architecture</h1><p>Click any field to edit · Changes saved with the Save button</p></div>
+    <div class="bchips"><div class="chip" style="border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.7)">All fields editable</div></div>
+  </div>
+  <div class="ms-sec">
+    <h3>Core messages</h3>
+    <div class="mg" id="CM"></div>
+  </div>
+  <div class="ms-sec">
+    <h3>Language guide</h3>
+    <div class="lgrid">
+      <div>
+        <h4 style="color:var(--sales-dark)">Use this language</h4>
+        <div class="ll" id="ULL"></div>
+        <button class="albtn" onclick="addLang('use')">+ Add phrase</button>
+      </div>
+      <div>
+        <h4 style="color:var(--pr-dark)">Avoid this language</h4>
+        <div class="ll" id="ALL"></div>
+        <button class="albtn" onclick="addLang('avoid')">+ Add phrase</button>
+      </div>
+    </div>
+  </div>
+  <div class="tbar">
+    <button class="btn bpri" onclick="saveData()">Save messaging</button>
+  </div>
+</div>
+
+</div>
+
+<!-- MODAL -->
+<div class="mbg" id="MOD">
+  <div class="modal">
+    <h3 id="mtitle">Edit activity</h3>
+    <div class="fr"><label>Activity name</label><input type="text" id="fn"></div>
+    <div class="ft">
+      <div class="fr"><label>Type</label><select id="ft"><option value="pr">PR &amp; media</option><option value="mkt">Marketing</option><option value="sales">Sales</option><option value="wb">Webinar</option><option value="ms">Milestone</option></select></div>
+      <div class="fr"><label>Status</label><select id="fs"><option value="not">Not started</option><option value="prog">In progress</option><option value="done">Done</option><option value="block">Blocked</option></select></div>
+    </div>
+    <div class="ft">
+      <div class="fr"><label>Start week</label><select id="fw"></select></div>
+      <div class="fr"><label>Duration (weeks)</label><input type="number" id="fd" min="1" max="10" step="1"></div>
+    </div>
+    <div class="fr"><label>Notes / blockers</label><textarea id="fno" placeholder="Context, links, blockers..."></textarea></div>
+    <div class="mbtns">
+      <button class="btn bpri" onclick="saveModal()">Save</button>
+      <button class="btn bsec" onclick="closeModal()">Cancel</button>
+      <button class="btn bdng" onclick="delRow()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const WKS=['May 9','May 16','May 23','May 30','Jun 6','Jun 13','Jun 20','Jun 27','Jul 4','Jul 11'];
+const MSW=[6,7],NOW=0,SK='unitx_v4';
+const AVC=['#2471A3','#C0392B','#1E8449','#7D3C98','#E67E22','#117A65'];
+let editId=null,nid=300;
+
+const DS=[
+  {id:'pr',cat:'PR & Media',rows:[
+    {id:1, name:'Build media list',                   type:'pr',  start:1,dur:1,owner:'PR Lead',  status:'not',notes:'Vision Systems Design, The Robot Report, Automation World, Control Engineering, Quality Magazine, Manufacturing Engineering'},
+    {id:2, name:'Journalist outreach',                type:'pr',  start:1,dur:2,owner:'PR Lead',  status:'not',notes:'Offer exclusive pre-show briefing with embargo. Journalists need 3–4 weeks to write — must go this week.'},
+    {id:3, name:'Draft press release',                type:'pr',  start:1,dur:2,owner:'PR Lead',  status:'not',notes:'Lead with deployment ease. AI segmentation is capability proof, not a price story.'},
+    {id:4, name:'Embargo briefings to journalists',   type:'pr',  start:2,dur:2,owner:'PR Lead',  status:'not',notes:'Embargo lifts June 22, 9AM CT simultaneously across all channels.'},
+    {id:5, name:'Contributed article pitch',          type:'pr',  start:2,dur:3,owner:'PR Lead',  status:'not',notes:'Vision Systems Design: "Why AI vision needs to be self-serve" — target mid-June publish.'},
+    {id:6, name:'Check Automate Award deadline',      type:'pr',  start:1,dur:1,owner:'PR Lead',  status:'not',notes:'GAP ADDED: Automate Innovation Award — check deadline immediately, may already be closing. Submit if open.'},
+    {id:7, name:'Trade articles publish',             type:'pr',  start:4,dur:2,owner:'PR Lead',  status:'not',notes:'Target 2–3 articles published before June 22. Confirm with all journalists by June 6.'},
+    {id:8, name:'LinkedIn countdown posts',           type:'pr',  start:2,dur:4,owner:'PR Lead',  status:'not',notes:'Post 1 (May 23): 60-sec setup story. Post 2 (Jun 6): OCR reveal. Post 3 (Jun 13): Segmentation reveal.'},
+    {id:9, name:'Press release goes live',            type:'ms',  start:6,dur:1,owner:'PR Lead',  status:'not',notes:'June 22, 9AM CT. Fixed milestone.',fixed:true},
+    {id:10,name:'Media tours at Automate',            type:'ms',  start:6,dur:1,owner:'PR Lead',  status:'not',notes:'30-min 1:1 booth demos for journalists Days 1–2.',fixed:true},
+    {id:11,name:'Post-show journalist follow-up',     type:'pr',  start:7,dur:2,owner:'PR Lead',  status:'not',notes:'Hi-res media kit, quote sheet, show footage within 48hrs of show close.'},
+    {id:12,name:'Case study & recap blog',            type:'pr',  start:7,dur:2,owner:'PR Lead',  status:'not',notes:'"What we heard from manufacturers on the floor." Push to trade press.'},
+    {id:13,name:'Submit Vision Systems Design Award', type:'pr',  start:7,dur:1,owner:'PR Lead',  status:'not',notes:'Vision Systems Design Innovators Award — post-show submission.'},
+  ]},
+  {id:'mkt',cat:'Marketing',rows:[
+    {id:20,name:'Lock product name',                  type:'mkt', start:0,dur:1,owner:'Mktg Lead',status:'not',notes:'CRITICAL — BLOCKS EVERYTHING. All assets, PR, and booth materials stalled without this.'},
+    {id:21,name:'Brief web team',                     type:'mkt', start:0,dur:1,owner:'Mktg Lead',status:'not',notes:'Landing page hero = ease-of-deployment. Add waitlist CTA to begin list-building now.'},
+    {id:22,name:'Demo video shoot',                   type:'mkt', start:0,dur:2,owner:'Mktg Lead',status:'not',notes:'90-sec demo. Operator (not engineer) runs 60-sec setup. Segmentation as hero scenario.'},
+    {id:23,name:'Landing page live',                  type:'mkt', start:1,dur:2,owner:'Mktg Lead',status:'not',notes:'Must be live by May 23. Demo video, waitlist CTA, no price-first messaging.'},
+    {id:24,name:'One-pager & competitive tearsheet',  type:'mkt', start:1,dur:2,owner:'Mktg Lead',status:'not',notes:'GAP ADDED: Include Cognex Insight series in tearsheet alongside IV4, VS, OV80i — was missing from original plan.'},
+    {id:25,name:'3D model rendering',                 type:'mkt', start:1,dur:2,owner:'Mktg Lead',status:'not',notes:'Product renders for landing page, one-pager, and sales deck. Needed before any major assets go live — start immediately alongside landing page brief.'},
+    {id:26,name:'Sales deck',                         type:'mkt', start:1,dur:2,owner:'Mktg Lead',status:'not',notes:'Full sales presentation for SI partners and direct prospects. Lead with ease-of-deployment story. Include competitive comparison vs IV4, VS, OV80i, Cognex. Align with SI channel enablement package.'},
+    {id:27,name:'Product teaser video publish',       type:'mkt', start:2,dur:2,owner:'Mktg Lead',status:'not',notes:'60–90 sec teaser cut for social and landing page. Distinct from the full demo video — this is the awareness hook. Publish by June 6 to build pre-show buzz. Push to LinkedIn and YouTube.'},
+    {id:28,name:'Pre-show email campaign',            type:'mkt', start:2,dur:3,owner:'Mktg Lead',status:'not',notes:'3-email nurture sequence to landing page waitlist and existing contacts. Email 1 (May 23): product announcement teaser. Email 2 (Jun 6): segmentation capability reveal. Email 3 (Jun 16): "See us at Automate" booth invite with meeting booking link.'},
+    {id:29,name:'Demo video published',               type:'mkt', start:3,dur:2,owner:'Mktg Lead',status:'not',notes:'Full 90-sec demo video on LinkedIn + YouTube. At least 2 weeks before show opens. Operator (not engineer) runs the 60-sec setup.'},
+    {id:50,name:'User manual',                        type:'mkt', start:3,dur:3,owner:'Mktg Lead',status:'not',notes:'Complete user-facing documentation. Must be ready for Automate booth — SIs and prospects will ask for it. Cover: setup, tool configuration, PLC integration, troubleshooting.'},
+    {id:51,name:'Tutorial video',                     type:'mkt', start:4,dur:2,owner:'Mktg Lead',status:'not',notes:'Step-by-step setup and tool configuration video. Reinforces the "your team can deploy it" brand promise. Publish before Automate. Can double as webinar pre-read content.'},
+    {id:30,name:'Demo dry-run',                       type:'mkt', start:5,dur:1,owner:'Mktg Lead',status:'not',notes:'Week of June 16. Non-expert operator runs full setup end to end without coaching. Source the "clip not fully seated" fixture for segmentation demo.'},
+    {id:52,name:'Case studies',                       type:'mkt', start:7,dur:3,owner:'Mktg Lead',status:'not',notes:'First case study from Automate pilot partner — center on time-to-deploy story, not features. Target publish by mid-July to support post-show lead nurture and webinar credibility.'},
+    {id:31,name:'Live booth demo (hourly)',            type:'ms',  start:6,dur:1,owner:'Mktg Lead',status:'not',notes:'Operator every hour. "Clip not fully seated" segmentation scenario needs physical part fixture on booth.',fixed:true},
+    {id:32,name:'Webinar invite email',               type:'wb',  start:7,dur:2,owner:'Mktg Lead',status:'not',notes:'Send by June 30. All Automate leads + landing page waitlist.'},
+    {id:33,name:'Webinar: AI Vision Your Team Can Deploy',type:'wb',start:8,dur:2,owner:'Mktg Lead',status:'not',notes:'Target Tue–Wed Jul 8–17. 11AM or 2PM ET. 60 min. Record + gate behind form.'},
+  ]},
+  {id:'sales',cat:'Sales',rows:[
+    {id:40,name:'Brief SI partners',                  type:'sales',start:0,dur:2,owner:'Sales Lead',status:'not',notes:'Early access, co-sell messaging, webinar co-promotion commitment in writing.'},
+    {id:41,name:'SI channel enablement package',      type:'sales',start:1,dur:2,owner:'Sales Lead',status:'not',notes:'GAP ADDED: SIs are primary NA sales channel but had no enablement plan. Need: co-sell deck, margin structure, training. Must be ready before Automate.'},
+    {id:42,name:'Define pilot program terms',         type:'sales',start:1,dur:2,owner:'Sales Lead',status:'not',notes:'GAP ADDED: 30-day eval units offered at show but no process defined. Who qualifies, unit count, commercial terms, program owner.'},
+    {id:43,name:'Confirm speaker session status',     type:'sales',start:1,dur:1,owner:'Sales Lead',status:'not',notes:'GAP ADDED: Automate conference track deadline may have passed (typically 6–8 wks before show). Confirm status immediately.'},
+    {id:44,name:'Pre-schedule show meetings',         type:'sales',start:3,dur:3,owner:'Sales Lead',status:'not',notes:'Key prospects and SI partners at Automate. Target: 20+ pre-scheduled slots.'},
+    {id:45,name:'Automate 2026 — show floor',         type:'ms',  start:6,dur:1,owner:'Sales Lead',status:'not',notes:'Lead capture: tag by persona — IV4 upgrader / new vision buyer / SI partner.',fixed:true},
+    {id:46,name:'Lead follow-up (48hr)',              type:'sales',start:7,dur:3,owner:'Sales Lead',status:'not',notes:'Segment into nurture tracks by persona. IV4 upgrader vs new buyer vs SI partner.'},
+    {id:47,name:'Convert leads to pilots',            type:'sales',start:8,dur:2,owner:'Sales Lead',status:'not',notes:'30-day pilot / POC conversions. Pipeline review and reporting.'},
+  ]}
+];
+
+const DM={
+  core:[
+    {label:'Core brand message',   text:'"AI vision your team can actually deploy — no specialists, no long integration projects, no friction."'},
+    {label:'Hero proof point',     text:'From unboxing to first inspection in under a minute — because setup shouldn\'t be a project.'},
+    {label:'Capability anchor',    text:'Production-grade AI segmentation, OCR, and multi-class inspection — configured by your team, on your timeline.'},
+    {label:'Competitive wedge',    text:'When the IV4 isn\'t enough but the VS is overkill — UnitX delivers VS-class AI at a new price point, live in 60 seconds.'},
+    {label:'PR headline angle',    text:'"UnitX makes AI machine vision self-serve — changing the economics of quality control in American manufacturing."'},
+    {label:'CorteX upsell bridge', text:'When your application grows beyond the smart camera, UnitX CorteX picks up exactly where V1 leaves off — same software, deeper AI.'},
+  ],
+  use:[
+    '"VS-class AI at a new price point"',
+    '"Your team deploys it. Your team owns it."',
+    '"Vision that runs on your timeline, not your integrator\'s"',
+    '"AI vision now within reach for in-process lines"',
+    '"Engineered for the application, not the price list"',
+    '"Setup shouldn\'t be a project"',
+    '"No PhD in vision engineering required"',
+  ],
+  avoid:[
+    '"Unbeatable prices" — sounds like a discount brand',
+    '"Basic sensor price" — anchors to the wrong category',
+    '"Affordable" / "budget-friendly" — triggers discount connotations',
+    '"High-end at low cost" — frames you as low cost, not high capability',
+    '"Only $5,000" — never lead with price',
+    '"Cheap alternative to VS" — undermines trust',
+  ]
+};
+
+let users=[{id:'u1',name:'PR Lead',role:'Public Relations',color:'#C0392B'},{id:'u2',name:'Mktg Lead',role:'Marketing',color:'#1A5276'},{id:'u3',name:'Sales Lead',role:'Sales',color:'#1E8449'}];
+let cUser=null,secs=[],msg={};
+
+function cl(o){return JSON.parse(JSON.stringify(o))}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
+
+function loadData(){
+  try{const d=JSON.parse(localStorage.getItem(SK)||'{}');secs=d.secs||cl(DS);users=d.users||cl(users);cUser=d.cUser||null;msg=d.msg||cl(DM)}
+  catch{secs=cl(DS);msg=cl(DM)}
+  nid=Math.max(...secs.flatMap(s=>s.rows.map(r=>r.id)),199)+1;
+}
+function saveData(){localStorage.setItem(SK,JSON.stringify({secs,users,cUser,msg}));toast('Saved')}
+function resetData(){if(!confirm('Reset everything to defaults?'))return;localStorage.removeItem(SK);secs=cl(DS);msg=cl(DM);users=[{id:'u1',name:'PR Lead',role:'Public Relations',color:'#C0392B'},{id:'u2',name:'Mktg Lead',role:'Marketing',color:'#1A5276'},{id:'u3',name:'Sales Lead',role:'Sales',color:'#1E8449'}];cUser=null;renderGantt();renderMsg();renderUsers();toast('Reset to defaults')}
+
+function renderGantt(){
+  const as=document.getElementById('ar-start');
+  if(as)as.innerHTML=WKS.map((w,i)=>`<option value="${i}">${w}</option>`).join('');
+  const tbl=document.getElementById('GT');
+  let h='<thead><tr><th class="lth">Activity</th><th class="oth">Owner</th><th style="width:82px;text-align:center;font-size:10px">Status</th><th style="width:36px"></th>';
+  WKS.forEach((w,i)=>{const ia=MSW.includes(i),in_=i===NOW;h+=`<th class="wth${ia?' ath':''}" style="${in_?'background:var(--now-light);color:var(--now)':''}">${w}</th>`});
+  h+='</tr></thead><tbody>';
+  secs.forEach(sec=>{
+    const cc=sec.id==='pr'?'#C0392B':sec.id==='mkt'?'#1A5276':'#1E8449';
+    h+=`<tr class="cr"><td colspan="${WKS.length+3}" style="color:${cc}">${sec.cat}</td></tr>`;
+    sec.rows.forEach(r=>{
+      const sc={not:'sn',prog:'sp',done:'sd',block:'sb'}[r.status||'not'];
+      h+=`<tr class="dr" id="R${r.id}"><td class="ltd" onclick="openModal(${r.id})">${r.name}<span class="eh">✎</span></td>`;
+      h+=`<td class="otd"><input class="oi" value="${(r.owner||'').replace(/"/g,'&quot;')}" onchange="setOwner(${r.id},this.value)" placeholder="Assign..."></td>`;
+      h+=`<td style="padding:2px 6px"><select class="ssel ${sc}" onchange="setStatus(${r.id},this.value)"><option value="not" ${r.status==='not'?'selected':''}>Not started</option><option value="prog" ${r.status==='prog'?'selected':''}>In progress</option><option value="done" ${r.status==='done'?'selected':''}>Done</option><option value="block" ${r.status==='block'?'selected':''}>Blocked</option></select></td>`;
+      h+=`<td style="padding:2px 4px;text-align:center">${r.fixed?'':'<button onclick="delRowInline('+r.id+')" title="Delete row" style="background:none;border:none;cursor:pointer;color:var(--text3);font-size:15px;line-height:1;padding:2px 4px;border-radius:3px;transition:color .12s" onmouseenter="this.style.color=\'var(--pr)\'" onmouseleave="this.style.color=\'var(--text3)\'">×</button>'}</td>`;
+      WKS.forEach((w,i)=>{
+        const act=i>=r.start&&i<r.start+r.dur,ia=MSW.includes(i),in_=i===NOW;
+        const bc=act?(r.type||'pr'):'empty',ccl=(ia?' ac':in_?' nc':'');
+        h+=`<td class="ctd${ccl}"><div class="bw">`;
+        if(act&&!r.fixed)h+=`<div class="bar ${bc}" onclick="openModal(${r.id})">${r.type==='ms'?'<span class="msd">●</span>':''}</div>`;
+        else if(act)h+=`<div class="bar ${bc}">${r.type==='ms'?'<span class="msd">●</span>':''}</div>`;
+        else if(!r.fixed)h+=`<div class="bar empty" onclick="qplace(${r.id},${i})"></div>`;
+        h+='</div></td>';
+      });
+      h+='</tr>';
+    });
+  });
+  tbl.innerHTML=h+'</tbody>';
+}
+
+function addRowPanel(){
+  const name=document.getElementById('ar-name').value.trim();
+  if(!name){toast('Please enter an activity name');return}
+  const type=document.getElementById('ar-sec').value;
+  const start=parseInt(document.getElementById('ar-start').value)||0;
+  const dur=Math.max(1,parseInt(document.getElementById('ar-dur').value)||1);
+  const owner=document.getElementById('ar-owner').value.trim()||cUser?.name||'';
+  const si={pr:0,mkt:1,sales:2}[type]||0;
+  const id=nid++;
+  secs[si].rows.push({id,name,type,start,dur,owner,status:'not',notes:''});
+  document.getElementById('ar-name').value='';
+  document.getElementById('ar-owner').value='';
+  renderGantt();saveData();toast(`"${name}" added`);
+}
+
+function findRow(id){for(const s of secs)for(const r of s.rows)if(r.id===id)return r;return null}
+function openModal(id){
+  const r=findRow(id);if(!r||r.fixed)return;
+  editId=id;
+  document.getElementById('fn').value=r.name;
+  document.getElementById('ft').value=r.type||'pr';
+  document.getElementById('fs').value=r.status||'not';
+  document.getElementById('fd').value=r.dur;
+  document.getElementById('fno').value=r.notes||'';
+  document.getElementById('fw').innerHTML=WKS.map((w,i)=>`<option value="${i}" ${r.start===i?'selected':''}>${w}</option>`).join('');
+  document.getElementById('mtitle').textContent=r.name;
+  document.getElementById('MOD').classList.add('open');
+}
+function closeModal(){editId=null;document.getElementById('MOD').classList.remove('open')}
+function saveModal(){
+  const r=findRow(editId);if(!r)return;
+  r.name=document.getElementById('fn').value||r.name;
+  r.type=document.getElementById('ft').value;
+  r.status=document.getElementById('fs').value;
+  r.start=parseInt(document.getElementById('fw').value);
+  r.dur=Math.max(1,parseInt(document.getElementById('fd').value)||1);
+  r.notes=document.getElementById('fno').value;
+  closeModal();renderGantt();saveData();
+}
+function delRow(){if(!editId)return;secs.forEach(s=>{s.rows=s.rows.filter(r=>r.id!==editId)});closeModal();renderGantt();saveData()}
+function delRowInline(id){const r=findRow(id);if(!r||r.fixed)return;if(!confirm(`Delete "${r.name}"?`))return;secs.forEach(s=>{s.rows=s.rows.filter(x=>x.id!==id)});renderGantt();saveData();toast('Row deleted')}
+function qplace(id,week){const r=findRow(id);if(!r)return;r.start=week;r.dur=1;renderGantt();saveData();openModal(id)}
+function setOwner(id,v){const r=findRow(id);if(r){r.owner=v;saveData()}}
+function setStatus(id,v){const r=findRow(id);if(r){r.status=v;saveData();renderGantt()}}
+
+function renderMsg(){
+  document.getElementById('CM').innerHTML=msg.core.map((m,i)=>`
+    <div class="mc"><div class="mclb">${m.label}</div>
+    <textarea rows="3" oninput="msg.core[${i}].text=this.value">${m.text}</textarea></div>
+  `).join('');
+  renderLang();
+}
+function renderLang(){
+  document.getElementById('ULL').innerHTML=msg.use.map((t,i)=>`
+    <div class="lit"><input value="${t.replace(/"/g,'&quot;')}" oninput="msg.use[${i}]=this.value" placeholder="Phrase...">
+    <button class="dlt" onclick="delLang('use',${i})">×</button></div>`).join('');
+  document.getElementById('ALL').innerHTML=msg.avoid.map((t,i)=>`
+    <div class="lit"><input value="${t.replace(/"/g,'&quot;')}" oninput="msg.avoid[${i}]=this.value" placeholder="Phrase...">
+    <button class="dlt" onclick="delLang('avoid',${i})">×</button></div>`).join('');
+}
+function addLang(l){msg[l].push('');renderLang();const el=document.getElementById(l==='use'?'ULL':'ALL');const ins=el.querySelectorAll('input');if(ins.length)ins[ins.length-1].focus()}
+function delLang(l,i){msg[l].splice(i,1);renderLang()}
+
+function renderUsers(){
+  document.getElementById('UL').innerHTML=users.map(u=>`
+    <div class="urow ${cUser?.id===u.id?'active':''}" onclick="selUser('${u.id}')">
+      <div class="uav" style="background:${u.color};width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0">${u.name.charAt(0)}</div>
+      <div><div class="un">${u.name}</div><div class="urole">${u.role}</div></div>
+    </div>`).join('');
+}
+function selUser(uid){
+  cUser=users.find(u=>u.id===uid)||null;
+  if(cUser){document.getElementById('av').textContent=cUser.name.charAt(0);document.getElementById('av').style.background=cUser.color;document.getElementById('uname').textContent=cUser.name}
+  saveData();renderUsers();document.getElementById('UP').classList.remove('open');
+}
+function addUser(){
+  const name=document.getElementById('nUN').value.trim(),role=document.getElementById('nUR').value.trim();
+  if(!name)return;
+  users.push({id:'u'+Date.now(),name,role:role||'Team member',color:AVC[users.length%AVC.length]});
+  document.getElementById('nUN').value='';document.getElementById('nUR').value='';
+  renderUsers();saveData();toast(`${name} added`);
+}
+function toggleUP(){document.getElementById('UP').classList.toggle('open');renderUsers()}
+
+function showTab(id){
+  document.querySelectorAll('.tc').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tbtn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.querySelectorAll('.tbtn').forEach(b=>{if(b.getAttribute('onclick').includes(id))b.classList.add('active')});
+}
+
+function exportCSV(){
+  let c='Section,Activity,Owner,Start Week,Duration,Status,Notes\n';
+  secs.forEach(s=>s.rows.forEach(r=>{const st={not:'Not started',prog:'In progress',done:'Done',block:'Blocked'}[r.status||'not'];c+=`"${s.cat}","${r.name}","${r.owner||''}","${WKS[r.start]}",${r.dur},"${st}","${(r.notes||'').replace(/"/g,'""')}"\n`}));
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:'text/csv'}));a.download='UnitX_LaunchPlan.csv';a.click();
+}
+
+document.getElementById('MOD').addEventListener('click',e=>{if(e.target===document.getElementById('MOD'))closeModal()});
+document.addEventListener('click',e=>{const p=document.getElementById('UP');if(!p.contains(e.target)&&!e.target.closest('.uchip'))p.classList.remove('open')});
+
+loadData();renderGantt();renderMsg();if(cUser)selUser(cUser.id);
+</script>
+</body>
+</html>
